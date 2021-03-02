@@ -4,8 +4,6 @@ let stored = null;
 
 const digits = [...Array(10).keys()].map((key) => key.toString());
 
-console.log(digits);
-
 const operations = {
   "+": (first, second) => first + second,
   "-": (first, second) => first - second,
