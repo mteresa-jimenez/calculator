@@ -52,7 +52,7 @@ body {
   border: none;
 }
 
-.buttons-grid > button:hover {
+.buttons-grid > button:active {
   background-color: rgba(201, 196, 196, 0.8);
 }
 
