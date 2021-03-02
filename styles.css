@@ -1,18 +1,22 @@
 /* Reset styles */
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
-  justify-content: center;
-  align-content: center;
   background-color: rgb(201, 196, 196);
 }
 
 .calculator-grid {
-  height: 90vh;
+  width: 90vw;
+  height: 80vh;
+  margin: 30px auto auto auto;
+  padding-top: 10px;
   background-color: rgb(36, 36, 36);
   justify-content: center;
-  align-content: center;
   display: grid;
   grid-template-columns: repeat(4, 75px);
   grid-template-rows: repeat(5, 75px);
