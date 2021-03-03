@@ -132,6 +132,7 @@ body {
 @media all and (min-width: 1024px) {
   .calculator {
     width: 500px;
+    height: 540px;
     margin: 100px auto auto auto;
     border-radius: 6px;
   }
@@ -139,6 +140,7 @@ body {
   /* Screen results */
   #display {
     width: 455px;
+    margin-top: 15px;
   }
 
   /* Buttons */
