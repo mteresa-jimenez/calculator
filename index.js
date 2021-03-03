@@ -52,22 +52,58 @@ const elements = {
   },
 };
 
+// Handle events
+function handleSeparatorButton() {
+  const text = elements.display.textContent;
+  if (text.length && text.indexOf(".") === -1)
+    elements.display.textContent += ".";
+}
+
+function handleClearButton() {
+  elements.display.textContent = "";
+  stored = null;
+}
+
+// function handleOperationButtons() {
+//   stored = {
+//     text: stored ? calculate() : elements.display.textContent,
+//     opCode,
+//   };
+//   elements.display.textContent = "";
+// }
+
+function handleCalculateButton() {
+  if (!stored) return;
+  elements.display.textContent = calculate();
+  stored = null;
+}
+
+function handleKeys(ev) {
+  switch (ev.keyCode) {
+    case 32:
+      handleClearButton();
+      break;
+    case 190:
+      handleSeparatorButton();
+      break;
+    case 16 && 48:
+      handleCalculateButton();
+      break;
+  }
+}
+
+// Events
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
     button.addEventListener("click", function () {
       elements.display.textContent += digit;
     });
 
-  elements.separatorButton.addEventListener("click", function () {
-    const text = elements.display.textContent;
-    if (text.length && text.indexOf(".") === -1)
-      elements.display.textContent += ".";
-  });
+  elements.separatorButton.addEventListener("click", handleSeparatorButton);
+  window.addEventListener("keydown", handleKeys);
 
-  elements.clearButton.addEventListener("click", function () {
-    elements.display.textContent = "";
-    stored = null;
-  });
+  elements.clearButton.addEventListener("click", handleClearButton);
+  window.addEventListener("keydown", handleKeys);
 }
 
 function calculate() {
@@ -90,11 +126,8 @@ function setUpOperationButtons() {
 }
 
 function setUpCalculateButton() {
-  elements.calculateButton.addEventListener("click", function () {
-    if (!stored) return;
-    elements.display.textContent = calculate();
-    stored = null;
-  });
+  elements.calculateButton.addEventListener("click", handleCalculateButton);
+  window.addEventListener("keydown", handleKeys);
 }
 
 (() => {
