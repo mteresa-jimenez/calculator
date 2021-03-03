@@ -8,6 +8,8 @@ body {
 
 /* CALCULATOR */
 
+/* MOBILE DESIGN */
+
 .calculator {
   width: 90vw;
   height: 80vh;
@@ -122,4 +124,30 @@ body {
 
 #btn-calculate {
   grid-area: btn-calculate;
+}
+
+/* DESKTOP DESIGN */
+
+@media all and (min-width: 1024px) {
+  .calculator {
+    width: 500px;
+    margin: 100px auto auto auto;
+    border-radius: 6px;
+  }
+
+  /* Screen results */
+  #display {
+    width: 455px;
+  }
+
+  /* Buttons */
+
+  .buttons-grid {
+    grid-gap: 8px;
+    grid-template-columns: repeat(4, 110px);
+  }
+
+  .buttons-grid > button {
+    font-size: 28px;
+  }
 }
