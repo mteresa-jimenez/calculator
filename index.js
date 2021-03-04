@@ -53,6 +53,13 @@ const elements = {
 };
 
 // Handle events
+function handleDigitButtons() {
+  for (let digit of Object.entries(elements.digitButtons)) {
+    elements.display.textContent += digit;
+    console.log(digit);
+  }
+}
+
 function handleSeparatorButton() {
   const text = elements.display.textContent;
   if (text.length && text.indexOf(".") === -1)
@@ -65,11 +72,13 @@ function handleClearButton() {
 }
 
 // function handleOperationButtons() {
-//   stored = {
-//     text: stored ? calculate() : elements.display.textContent,
-//     opCode,
-//   };
-//   elements.display.textContent = "";
+//   for (let opCode of Object.entries(elements.operationButtons)) {
+//     stored = {
+//       text: stored ? calculate() : elements.display.textContent,
+//       opCode,
+//     };
+//     elements.display.textContent = "";
+//   }
 // }
 
 function handleCalculateButton() {
@@ -78,8 +87,45 @@ function handleCalculateButton() {
   stored = null;
 }
 
+// function handleDigitsKeys(ev) {
+//   return digits.map((digit) => {
+//     switch (ev.keyCode) {
+//       case 48 + digit:
+//         console.log(digit);
+//         elements.display.textContent += stringify(digit);
+//     }
+//   });
+// }
+
 function handleKeys(ev) {
   switch (ev.keyCode) {
+    case 49:
+      elements.display.textContent += "1";
+      break;
+    case 50:
+      elements.display.textContent += "2";
+      break;
+    case 51:
+      elements.display.textContent += "3";
+      break;
+    case 52:
+      elements.display.textContent += "4";
+      break;
+    case 53:
+      elements.display.textContent += "5";
+      break;
+    case 54:
+      elements.display.textContent += "6";
+      break;
+    case 55:
+      elements.display.textContent += "7";
+      break;
+    case 56:
+      elements.display.textContent += "8";
+      break;
+    case 57:
+      elements.display.textContent += "9";
+      break;
     case 32:
       handleClearButton();
       break;
@@ -89,21 +135,27 @@ function handleKeys(ev) {
     case 16 && 48:
       handleCalculateButton();
       break;
+    case 48:
+      elements.display.textContent += "0";
+      break;
   }
 }
 
 // Events
+function setUpKeys() {
+  window.addEventListener("keydown", handleKeys);
+  // window.addEventListener("keydown", handleDigitsKeys);
+}
+
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
     button.addEventListener("click", function () {
       elements.display.textContent += digit;
+      console.log(digit);
     });
 
   elements.separatorButton.addEventListener("click", handleSeparatorButton);
-  window.addEventListener("keydown", handleKeys);
-
   elements.clearButton.addEventListener("click", handleClearButton);
-  window.addEventListener("keydown", handleKeys);
 }
 
 function calculate() {
@@ -127,10 +179,10 @@ function setUpOperationButtons() {
 
 function setUpCalculateButton() {
   elements.calculateButton.addEventListener("click", handleCalculateButton);
-  window.addEventListener("keydown", handleKeys);
 }
 
 (() => {
+  setUpKeys();
   setUpEntryButtons();
   setUpOperationButtons();
   setUpCalculateButton();
