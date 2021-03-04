@@ -12,8 +12,11 @@ const operations = {
 };
 
 const elements = {
-  get display() {
-    return document.getElementById("display");
+  get displayFormula() {
+    return document.getElementById("display-formula");
+  },
+  get displayResult() {
+    return document.getElementById("display-result");
   },
   digitButtons: (() => {
     const buttons = {};
@@ -55,19 +58,19 @@ const elements = {
 // Handle events
 function handleDigitButtons() {
   for (let digit of Object.entries(elements.digitButtons)) {
-    elements.display.textContent += digit;
-    console.log(digit);
+    elements.displayFormula.textContent += digit;
   }
 }
 
 function handleSeparatorButton() {
-  const text = elements.display.textContent;
+  const text = elements.displayFormula.textContent;
   if (text.length && text.indexOf(".") === -1)
-    elements.display.textContent += ".";
+    elements.displayFormula.textContent += ".";
 }
 
 function handleClearButton() {
-  elements.display.textContent = "";
+  elements.displayResult.textContent = "";
+  elements.displayFormula.textContent = "";
   stored = null;
 }
 
@@ -83,41 +86,29 @@ function handleClearButton() {
 
 function handleCalculateButton() {
   if (!stored) return;
-  elements.display.textContent = calculate();
+  elements.displayResult.textContent = calculate();
   stored = null;
 }
 
-// function handleDigitsKeys(ev) {
-//   return digits.map((digit) => {
-//     switch (ev.keyCode) {
-//       case 48 + digit:
-//         console.log(digit);
-//         elements.display.textContent += stringify(digit);
-//     }
-//   });
-// }
-
 function handleKeys(ev) {
   if (ev.keyCode === 49) {
-    elements.display.textContent += "1";
+    elements.displayFormula.textContent += "1";
   } else if (ev.keyCode === 50) {
-    elements.display.textContent += "2";
+    elements.displayFormula.textContent += "2";
   } else if (ev.keyCode === 51) {
-    elements.display.textContent += "3";
+    elements.displayFormula.textContent += "3";
   } else if (ev.keyCode === 52) {
-    elements.display.textContent += "4";
+    elements.displayFormula.textContent += "4";
   } else if (ev.keyCode === 53) {
-    elements.display.textContent += "5";
+    elements.displayFormula.textContent += "5";
   } else if (ev.keyCode === 54) {
-    elements.display.textContent += "6";
+    elements.displayFormula.textContent += "6";
   } else if (ev.keyCode === 55) {
-    elements.display.textContent += "7";
+    elements.displayFormula.textContent += "7";
   } else if (ev.keyCode === 56) {
-    elements.display.textContent += "2";
+    elements.displayFormula.textContent += "8";
   } else if (ev.keyCode === 57) {
-    elements.display.textContent += "2";
-  } else if (ev.keyCode === 58) {
-    elements.display.textContent += "9";
+    elements.displayFormula.textContent += "9";
   } else if (ev.keyCode === 32) {
     handleClearButton();
   } else if (ev.keyCode === 190) {
@@ -177,7 +168,7 @@ function setUpKeys() {
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
     button.addEventListener("click", function () {
-      elements.display.textContent += digit;
+      elements.displayFormula.textContent += digit;
     });
 
   elements.separatorButton.addEventListener("click", handleSeparatorButton);
@@ -187,7 +178,7 @@ function setUpEntryButtons() {
 function calculate() {
   const [first, second] = [
     stored.text,
-    elements.display.textContent,
+    elements.displayFormula.textContent,
   ].map((text) => parseFloat(text));
   return operations[stored.opCode](first, second);
 }
@@ -196,10 +187,11 @@ function setUpOperationButtons() {
   for (let [opCode, button] of Object.entries(elements.operationButtons))
     button.addEventListener("click", function () {
       stored = {
-        text: stored ? calculate() : elements.display.textContent,
+        text: stored ? calculate() : elements.displayFormula.textContent,
         opCode,
       };
-      elements.display.textContent = "";
+      console.log(stored.opCode);
+      elements.displayFormula.textContent = stored.opCode;
     });
 }
 
