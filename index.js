@@ -98,60 +98,86 @@ function handleCalculateButton() {
 // }
 
 function handleKeys(ev) {
-  switch (ev.keyCode) {
-    case 49:
-      elements.display.textContent += "1";
-      break;
-    case 50:
-      elements.display.textContent += "2";
-      break;
-    case 51:
-      elements.display.textContent += "3";
-      break;
-    case 52:
-      elements.display.textContent += "4";
-      break;
-    case 53:
-      elements.display.textContent += "5";
-      break;
-    case 54:
-      elements.display.textContent += "6";
-      break;
-    case 55:
-      elements.display.textContent += "7";
-      break;
-    case 56:
-      elements.display.textContent += "8";
-      break;
-    case 57:
-      elements.display.textContent += "9";
-      break;
-    case 32:
-      handleClearButton();
-      break;
-    case 190:
-      handleSeparatorButton();
-      break;
-    case 16 && 48:
-      handleCalculateButton();
-      break;
-    case 48:
-      elements.display.textContent += "0";
-      break;
+  if (ev.keyCode === 49) {
+    elements.display.textContent += "1";
+  } else if (ev.keyCode === 50) {
+    elements.display.textContent += "2";
+  } else if (ev.keyCode === 51) {
+    elements.display.textContent += "3";
+  } else if (ev.keyCode === 52) {
+    elements.display.textContent += "4";
+  } else if (ev.keyCode === 53) {
+    elements.display.textContent += "5";
+  } else if (ev.keyCode === 54) {
+    elements.display.textContent += "6";
+  } else if (ev.keyCode === 55) {
+    elements.display.textContent += "7";
+  } else if (ev.keyCode === 56) {
+    elements.display.textContent += "2";
+  } else if (ev.keyCode === 57) {
+    elements.display.textContent += "2";
+  } else if (ev.keyCode === 58) {
+    elements.display.textContent += "9";
+  } else if (ev.keyCode === 32) {
+    handleClearButton();
+  } else if (ev.keyCode === 190) {
+    handleSeparatorButton();
+  } else if (ev.keyCode === (16 && 48)) {
+    handleCalculateButton();
   }
 }
+
+// function handleKeys(ev) {
+//   switch (ev.keyCode) {
+//     case 49:
+//       elements.display.textContent += "1";
+//       break;
+//     case 50:
+//       elements.display.textContent += "2";
+//       break;
+//     case 51:
+//       elements.display.textContent += "3";
+//       break;
+//     case 52:
+//       elements.display.textContent += "4";
+//       break;
+//     case 53:
+//       elements.display.textContent += "5";
+//       break;
+//     case 54:
+//       elements.display.textContent += "6";
+//       break;
+//     case 55:
+//       elements.display.textContent += "7";
+//       break;
+//     case 56:
+//       elements.display.textContent += "8";
+//       break;
+//     case 57:
+//       elements.display.textContent += "9";
+//       break;
+//     case 32:
+//       handleClearButton();
+//       break;
+//     case 190:
+//       handleSeparatorButton();
+//       break;
+//     case 16 && 48:
+//       handleCalculateButton();
+//       break;
+//   }
+// }
 
 // Events
 function setUpKeys() {
   window.addEventListener("keydown", handleKeys);
-  // window.addEventListener("keydown", handleDigitsKeys);
+  // window.addEventListener("keydown", handleKeyPressed);
 }
 
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
     button.addEventListener("click", function () {
       elements.display.textContent += digit;
-      console.log(digit);
     });
 
   elements.separatorButton.addEventListener("click", handleSeparatorButton);
