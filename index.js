@@ -12,6 +12,9 @@ const operations = {
 };
 
 const elements = {
+  get display() {
+    return document.getElementById("display");
+  },
   get displayFormula() {
     return document.getElementById("display-formula");
   },
@@ -175,6 +178,10 @@ function setUpEntryButtons() {
   elements.clearButton.addEventListener("click", handleClearButton);
 }
 
+function setClearTouch() {
+  elements.display.addEventListener("touchstart", handleClearButton);
+}
+
 function calculate() {
   const [first, second] = [
     stored.text,
@@ -201,6 +208,7 @@ function setUpCalculateButton() {
 
 (() => {
   setUpKeys();
+  setClearTouch();
   setUpEntryButtons();
   setUpOperationButtons();
   setUpCalculateButton();
