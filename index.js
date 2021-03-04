@@ -191,7 +191,7 @@ function setUpOperationButtons() {
         opCode,
       };
       console.log(stored.opCode);
-      elements.displayFormula.textContent = stored.opCode;
+      elements.displayFormula.textContent = "";
     });
 }
 
