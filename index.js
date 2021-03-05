@@ -138,15 +138,10 @@ function handleKeys(ev) {
 }
 
 let touchstartX = 0;
-let touchstartY = 0;
 let touchendX = 0;
-let touchendY = 0;
 
 function handleSetUpClearTouch() {
-  console.log(touchendX);
-  console.log(touchstartX);
   if (touchendX <= touchstartX) {
-    console.log("Swipe left");
     handleClearButton();
   }
 }
@@ -171,7 +166,6 @@ function setUpClearTouch() {
     "touchstart",
     function (ev) {
       touchstartX = ev.changedTouches[0].screenX;
-      touchstartY = ev.changedTouches[0].screenY;
     },
     false
   );
@@ -179,7 +173,6 @@ function setUpClearTouch() {
     "touchend",
     function (ev) {
       touchendX = ev.changedTouches[0].screenX;
-      touchendY = ev.changedTouches[0].screenY;
       handleSetUpClearTouch();
     },
     false
