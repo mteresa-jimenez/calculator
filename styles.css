@@ -11,7 +11,7 @@ body {
 /* MOBILE DESIGN */
 
 .calculator {
-  width: 90vw;
+  width: 330px;
   height: 80vh;
   margin: 30px auto auto auto;
   padding-bottom: 10px;
@@ -34,7 +34,7 @@ body {
   align-content: center;
   color: rgb(2, 41, 2);
   font-family: "Times New Roman", serif;
-  font-size: 30px;
+  font-size: 1.875rem;
   overflow: hidden;
 }
 /* Buttons */

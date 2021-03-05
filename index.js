@@ -58,6 +58,11 @@ const elements = {
   },
 };
 
+// let touchstartX = 0;
+// let touchstartY = 0;
+// let touchendX = 0;
+// let touchendY = 0;
+
 // Handle events
 function handleDigitButtons() {
   for (let digit of Object.entries(elements.digitButtons)) {
@@ -112,6 +117,8 @@ function handleKeys(ev) {
     elements.displayFormula.textContent += "8";
   } else if (ev.keyCode === 57) {
     elements.displayFormula.textContent += "9";
+    // } else if (ev.keyCode === (48 && !16)) {
+    //   elements.displayFormula.textContent += "0";
   } else if (ev.keyCode === 32) {
     handleClearButton();
   } else if (ev.keyCode === 190) {
@@ -162,6 +169,12 @@ function handleKeys(ev) {
 //   }
 // }
 
+// function handleSetUpClearTouch() {
+//   if (touchendX < touchstartX) {
+//     handleClearButton();
+//   }
+// }
+
 // Events
 function setUpKeys() {
   window.addEventListener("keydown", handleKeys);
@@ -178,8 +191,25 @@ function setUpEntryButtons() {
   elements.clearButton.addEventListener("click", handleClearButton);
 }
 
-function setClearTouch() {
-  elements.display.addEventListener("touchstart", handleClearButton);
+function setUpClearTouch() {
+  elements.display.addEventListener("touchmove", handleClearButton);
+  // elements.display.addEventListener(
+  //   "touchstart",
+  //   function (ev) {
+  //     touchstartX = ev.screenX;
+  //     touchstartY = ev.screenY;
+  //   },
+  //   false
+  // );
+  // elements.display.addEventListener(
+  //   "touchstend",
+  //   function (ev) {
+  //     touchstartX = ev.screenX;
+  //     touchstartY = ev.screenY;
+  //     handleSetUpClearTouch();
+  //   },
+  //   false
+  // );
 }
 
 function calculate() {
@@ -197,8 +227,8 @@ function setUpOperationButtons() {
         text: stored ? calculate() : elements.displayFormula.textContent,
         opCode,
       };
-      console.log(stored.opCode);
-      elements.displayFormula.textContent = "";
+      console.log(stored);
+      elements.displayFormula.textContent += stored.opCode;
     });
 }
 
@@ -208,7 +238,7 @@ function setUpCalculateButton() {
 
 (() => {
   setUpKeys();
-  setClearTouch();
+  setUpClearTouch();
   setUpEntryButtons();
   setUpOperationButtons();
   setUpCalculateButton();
