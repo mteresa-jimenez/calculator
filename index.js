@@ -77,39 +77,55 @@ function handleCalculateButton() {
   stored = null;
 }
 
-function handleKeys(ev) {
+function handleKeysDown(ev) {
+  // console.log(elements.operationButtons);
   if (ev.key === "1") {
     elements.display.textContent += "1";
+    elements.digitButtons[1].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "2") {
     elements.display.textContent += "2";
+    elements.digitButtons[2].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "3") {
     elements.display.textContent += "3";
+    elements.digitButtons[3].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "4") {
     elements.display.textContent += "4";
+    elements.digitButtons[4].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "5") {
     elements.display.textContent += "5";
+    elements.digitButtons[5].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "6") {
     elements.display.textContent += "6";
+    elements.digitButtons[6].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "7") {
     elements.display.textContent += "7";
+    elements.digitButtons[7].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "8") {
     elements.display.textContent += "8";
+    elements.digitButtons[8].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "9") {
     elements.display.textContent += "9";
+    elements.digitButtons[9].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "0") {
     elements.display.textContent += "0";
+    elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === " ") {
     handleClearButton();
+    elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === ".") {
     handleSeparatorButton();
+    elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "=") {
     handleCalculateButton();
+    elements.calculateButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "+") {
     stored = {
       text: stored ? calculate() : elements.display.textContent,
       opCode: "+",
     };
     elements.display.textContent = "";
+    elements.operationButtons = { opCode: "+" }.style.backgroundColor =
+      "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "-") {
     stored = {
       text: stored ? calculate() : elements.display.textContent,
@@ -131,6 +147,36 @@ function handleKeys(ev) {
   }
 }
 
+function handleKeysUp(ev) {
+  if (ev.key === "1") {
+    elements.digitButtons[1].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "2") {
+    elements.digitButtons[2].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "3") {
+    elements.digitButtons[3].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "4") {
+    elements.digitButtons[4].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "5") {
+    elements.digitButtons[5].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "6") {
+    elements.digitButtons[6].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "7") {
+    elements.digitButtons[7].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "8") {
+    elements.digitButtons[8].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "9") {
+    elements.digitButtons[9].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "0") {
+    elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === " ") {
+    elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === ".") {
+    elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "=") {
+    elements.calculateButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  }
+}
+
 let touchstartX = 0;
 let touchendX = 0;
 
@@ -142,7 +188,8 @@ function handleSetUpClearTouch() {
 
 // Events
 function setUpKeys() {
-  window.addEventListener("keydown", handleKeys);
+  window.addEventListener("keydown", handleKeysDown);
+  window.addEventListener("keyup", handleKeysUp);
 }
 
 function setUpEntryButtons() {
