@@ -15,12 +15,6 @@ const elements = {
   get display() {
     return document.getElementById("display");
   },
-  get displayFormula() {
-    return document.getElementById("display-formula");
-  },
-  get displayResult() {
-    return document.getElementById("display-result");
-  },
   digitButtons: (() => {
     const buttons = {};
     for (let digit of digits)
@@ -61,49 +55,49 @@ const elements = {
 // Handle events
 function handleDigitButtons() {
   for (let digit of Object.entries(elements.digitButtons)) {
-    elements.displayFormula.textContent += digit;
+    elements.display.textContent += digit;
   }
 }
 
 function handleSeparatorButton() {
-  const text = elements.displayFormula.textContent;
+  const text = elements.display.textContent;
   if (text.length && text.indexOf(".") === -1)
-    elements.displayFormula.textContent += ".";
+    elements.display.textContent += ".";
 }
 
 function handleClearButton() {
-  elements.displayResult.textContent = "";
-  elements.displayFormula.textContent = "";
+  elements.display.textContent = "";
+  elements.display.textContent = "";
   stored = null;
 }
 
 function handleCalculateButton() {
   if (!stored) return;
-  elements.displayResult.textContent = calculate();
+  elements.display.textContent = calculate();
   stored = null;
 }
 
 function handleKeys(ev) {
   if (ev.key === "1") {
-    elements.displayFormula.textContent += "1";
+    elements.display.textContent += "1";
   } else if (ev.key === "2") {
-    elements.displayFormula.textContent += "2";
+    elements.display.textContent += "2";
   } else if (ev.key === "3") {
-    elements.displayFormula.textContent += "3";
+    elements.display.textContent += "3";
   } else if (ev.key === "4") {
-    elements.displayFormula.textContent += "4";
+    elements.display.textContent += "4";
   } else if (ev.key === "5") {
-    elements.displayFormula.textContent += "5";
+    elements.display.textContent += "5";
   } else if (ev.key === "6") {
-    elements.displayFormula.textContent += "6";
+    elements.display.textContent += "6";
   } else if (ev.key === "7") {
-    elements.displayFormula.textContent += "7";
+    elements.display.textContent += "7";
   } else if (ev.key === "8") {
-    elements.displayFormula.textContent += "8";
+    elements.display.textContent += "8";
   } else if (ev.key === "9") {
-    elements.displayFormula.textContent += "9";
+    elements.display.textContent += "9";
   } else if (ev.key === "0") {
-    elements.displayFormula.textContent += "0";
+    elements.display.textContent += "0";
   } else if (ev.key === " ") {
     handleClearButton();
   } else if (ev.key === ".") {
@@ -112,28 +106,28 @@ function handleKeys(ev) {
     handleCalculateButton();
   } else if (ev.key === "+") {
     stored = {
-      text: stored ? calculate() : elements.displayFormula.textContent,
+      text: stored ? calculate() : elements.display.textContent,
       opCode: "+",
     };
-    elements.displayFormula.textContent = "";
+    elements.display.textContent = "";
   } else if (ev.key === "-") {
     stored = {
-      text: stored ? calculate() : elements.displayFormula.textContent,
+      text: stored ? calculate() : elements.display.textContent,
       opCode: "-",
     };
-    elements.displayFormula.textContent = "";
+    elements.display.textContent = "";
   } else if (ev.key === "*") {
     stored = {
-      text: stored ? calculate() : elements.displayFormula.textContent,
+      text: stored ? calculate() : elements.display.textContent,
       opCode: "*",
     };
-    elements.displayFormula.textContent = "";
+    elements.display.textContent = "";
   } else if (ev.key === "/") {
     stored = {
-      text: stored ? calculate() : elements.displayFormula.textContent,
+      text: stored ? calculate() : elements.display.textContent,
       opCode: "/",
     };
-    elements.displayFormula.textContent = "";
+    elements.display.textContent = "";
   }
 }
 
@@ -154,7 +148,7 @@ function setUpKeys() {
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
     button.addEventListener("click", function () {
-      elements.displayFormula.textContent += digit;
+      elements.display.textContent += digit;
     });
 
   elements.separatorButton.addEventListener("click", handleSeparatorButton);
@@ -182,7 +176,7 @@ function setUpClearTouch() {
 function calculate() {
   const [first, second] = [
     stored.text,
-    elements.displayFormula.textContent,
+    elements.display.textContent,
   ].map((text) => parseFloat(text));
   return operations[stored.opCode](first, second);
 }
@@ -191,11 +185,11 @@ function setUpOperationButtons() {
   for (let [opCode, button] of Object.entries(elements.operationButtons))
     button.addEventListener("click", function () {
       stored = {
-        text: stored ? calculate() : elements.displayFormula.textContent,
+        text: stored ? calculate() : elements.display.textContent,
         opCode,
       };
       console.log(stored);
-      elements.displayFormula.textContent = "";
+      elements.display.textContent = "";
     });
 }
 
