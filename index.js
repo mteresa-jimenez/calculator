@@ -181,7 +181,7 @@ let touchstartX = 0;
 let touchendX = 0;
 
 function handleSetUpClearTouch() {
-  if (touchendX <= touchstartX) {
+  if (touchendX < touchstartX) {
     handleClearButton();
   }
 }
