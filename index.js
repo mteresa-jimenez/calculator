@@ -109,7 +109,7 @@ function handleKeysDown(ev) {
   } else if (ev.key === "0") {
     elements.display.textContent += "0";
     elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === " ") {
+  } else if (ev.key === "Backspace") {
     handleClearButton();
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === ".") {
@@ -168,7 +168,7 @@ function handleKeysUp(ev) {
     elements.digitButtons[9].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === "0") {
     elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === " ") {
+  } else if (ev.key === "Backspace") {
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === ".") {
     elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
