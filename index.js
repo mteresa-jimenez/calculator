@@ -78,7 +78,11 @@ function handleCalculateButton() {
 }
 
 function handleKeysDown(ev) {
-  // console.log(elements.operationButtons);
+  const add = "+";
+  const subtract = "-";
+  const multiply = "*";
+  const divide = "/";
+
   if (ev.key === "1") {
     elements.display.textContent += "1";
     elements.digitButtons[1].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
@@ -124,7 +128,7 @@ function handleKeysDown(ev) {
       opCode: "+",
     };
     elements.display.textContent = "";
-    elements.operationButtons = { opCode: "+" }.style.backgroundColor =
+    elements.operationButtons[add].style.backgroundColor =
       "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "-") {
     stored = {
@@ -132,22 +136,32 @@ function handleKeysDown(ev) {
       opCode: "-",
     };
     elements.display.textContent = "";
+    elements.operationButtons[subtract].style.backgroundColor =
+      "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "*") {
     stored = {
       text: stored ? calculate() : elements.display.textContent,
       opCode: "*",
     };
     elements.display.textContent = "";
+    elements.operationButtons[multiply].style.backgroundColor =
+      "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "/") {
     stored = {
       text: stored ? calculate() : elements.display.textContent,
       opCode: "/",
     };
     elements.display.textContent = "";
+    elements.operationButtons[divide].style.backgroundColor =
+      "rgba(201, 196, 196, 0.8)";
   }
 }
 
 function handleKeysUp(ev) {
+  const add = "+";
+  const subtract = "-";
+  const multiply = "*";
+  const divide = "/";
   if (ev.key === "1") {
     elements.digitButtons[1].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === "2") {
@@ -174,6 +188,18 @@ function handleKeysUp(ev) {
     elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === "=") {
     elements.calculateButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "+") {
+    elements.operationButtons[add].style.backgroundColor =
+      "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "-") {
+    elements.operationButtons[subtract].style.backgroundColor =
+      "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "*") {
+    elements.operationButtons[multiply].style.backgroundColor =
+      "rgba(201, 196, 196, 0.1)";
+  } else if (ev.key === "/") {
+    elements.operationButtons[divide].style.backgroundColor =
+      "rgba(201, 196, 196, 0.1)";
   }
 }
 
