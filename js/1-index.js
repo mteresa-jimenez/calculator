@@ -52,6 +52,14 @@ const elements = {
   },
 };
 
+function calculate() {
+  const [first, second] = [
+    stored.text,
+    elements.display.textContent,
+  ].map((text) => parseFloat(text));
+  return operations[stored.opCode](first, second);
+}
+
 // HANDLE EVENTS
 
 function handleDigits(digit) {
@@ -167,14 +175,6 @@ function setUpEntryButtons() {
 
   elements.separatorButton.addEventListener("click", handleSeparator);
   elements.clearButton.addEventListener("click", handleClear);
-}
-
-function calculate() {
-  const [first, second] = [
-    stored.text,
-    elements.display.textContent,
-  ].map((text) => parseFloat(text));
-  return operations[stored.opCode](first, second);
 }
 
 function setUpOperationButtons() {
