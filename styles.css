@@ -4,6 +4,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: rgb(201, 196, 196);
+  box-sizing: border-box;
 }
 
 /* CALCULATOR */
@@ -12,8 +13,8 @@ body {
 
 .calculator {
   width: 330px;
-  height: 80vh;
-  margin: 30px auto auto auto;
+  height: 590px;
+  margin: 50px auto auto auto;
   padding-bottom: 10px;
   background-color: rgb(36, 36, 36);
   display: flex;
