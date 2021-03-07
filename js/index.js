@@ -52,12 +52,7 @@ const elements = {
   },
 };
 
-// Handle events
-// function handleDigit() {
-//   for (let digit of Object.entries(elements.digitButtons)) {
-//     elements.display.textContent += digit;
-//   }
-// }
+// HANDLE EVENTS
 
 function handleSeparator() {
   const text = elements.display.textContent;
@@ -77,12 +72,10 @@ function handleCalculate() {
   stored = null;
 }
 
-function handleKeysDown(ev) {
-  const add = "+";
-  const subtract = "-";
-  const multiply = "*";
-  const divide = "/";
+// Handle keys
 
+function handleKeysDown(ev) {
+  // digits keys
   for (let [digit] of Object.entries(elements.digitButtons)) {
     if (ev.key === digit) {
       elements.display.textContent += digit;
@@ -91,6 +84,7 @@ function handleKeysDown(ev) {
     }
   }
 
+  // clear, separate and calculate keys
   if (ev.key === "Backspace") {
     handleClear();
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
@@ -100,47 +94,24 @@ function handleKeysDown(ev) {
   } else if (ev.key === "=") {
     handleCalculate();
     elements.calculateButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "+") {
-    stored = {
-      text: stored ? calculate() : elements.display.textContent,
-      opCode: "+",
-    };
-    elements.display.textContent = "";
-    elements.operationButtons[add].style.backgroundColor =
-      "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "-") {
-    stored = {
-      text: stored ? calculate() : elements.display.textContent,
-      opCode: "-",
-    };
-    elements.display.textContent = "";
-    elements.operationButtons[subtract].style.backgroundColor =
-      "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "*") {
-    stored = {
-      text: stored ? calculate() : elements.display.textContent,
-      opCode: "*",
-    };
-    elements.display.textContent = "";
-    elements.operationButtons[multiply].style.backgroundColor =
-      "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "/") {
-    stored = {
-      text: stored ? calculate() : elements.display.textContent,
-      opCode: "/",
-    };
-    elements.display.textContent = "";
-    elements.operationButtons[divide].style.backgroundColor =
-      "rgba(201, 196, 196, 0.8)";
+  }
+
+  //operation keys
+  for (let [opCode] of Object.entries(elements.operationButtons)) {
+    if (ev.key === opCode) {
+      stored = {
+        text: stored ? calculate() : elements.display.textContent,
+        opCode,
+      };
+      elements.display.textContent = "";
+      elements.operationButtons[opCode].style.backgroundColor =
+        "rgba(201, 196, 196, 0.8)";
+    }
   }
 }
 
 function handleKeysUp(ev) {
-  const add = "+";
-  const subtract = "-";
-  const multiply = "*";
-  const divide = "/";
-
+  // digits keys
   for (let [digit] of Object.entries(elements.digitButtons)) {
     if (ev.key === digit) {
       elements.digitButtons[digit].style.backgroundColor =
@@ -148,26 +119,25 @@ function handleKeysUp(ev) {
     }
   }
 
+  // clear, separate and calculate keys
   if (ev.key === "Backspace") {
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === ".") {
     elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === "=") {
     elements.calculateButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "+") {
-    elements.operationButtons[add].style.backgroundColor =
-      "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "-") {
-    elements.operationButtons[subtract].style.backgroundColor =
-      "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "*") {
-    elements.operationButtons[multiply].style.backgroundColor =
-      "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "/") {
-    elements.operationButtons[divide].style.backgroundColor =
-      "rgba(201, 196, 196, 0.1)";
+  }
+
+  //operation keys
+  for (let [opCode] of Object.entries(elements.operationButtons)) {
+    if (ev.key === opCode) {
+      elements.operationButtons[opCode].style.backgroundColor =
+        "rgba(201, 196, 196, 0.1)";
+    }
   }
 }
+
+// Handle Touch
 
 let touchstartX = 0;
 let touchendX = 0;
@@ -178,12 +148,9 @@ function handleSetUpClearTouch() {
   }
 }
 
-// Events
-function setUpKeys() {
-  window.addEventListener("keydown", handleKeysDown);
-  window.addEventListener("keyup", handleKeysUp);
-}
+// LISTEN EVENTS
 
+// Listen Buttons
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
     button.addEventListener("click", function () {
@@ -194,6 +161,37 @@ function setUpEntryButtons() {
   elements.clearButton.addEventListener("click", handleClear);
 }
 
+function calculate() {
+  const [first, second] = [
+    stored.text,
+    elements.display.textContent,
+  ].map((text) => parseFloat(text));
+  return operations[stored.opCode](first, second);
+}
+
+function setUpOperationButtons() {
+  console.log(elements.operationButtons);
+  for (let [opCode, button] of Object.entries(elements.operationButtons))
+    button.addEventListener("click", function () {
+      stored = {
+        text: stored ? calculate() : elements.display.textContent,
+        opCode,
+      };
+      elements.display.textContent = "";
+    });
+}
+
+function setUpCalculateButton() {
+  elements.calculateButton.addEventListener("click", handleCalculate);
+}
+
+// Listen Keys
+function setUpKeys() {
+  window.addEventListener("keydown", handleKeysDown);
+  window.addEventListener("keyup", handleKeysUp);
+}
+
+// Listen Touch
 function setUpClearTouch() {
   elements.display.addEventListener(
     "touchstart",
@@ -210,30 +208,6 @@ function setUpClearTouch() {
     },
     false
   );
-}
-
-function calculate() {
-  const [first, second] = [
-    stored.text,
-    elements.display.textContent,
-  ].map((text) => parseFloat(text));
-  return operations[stored.opCode](first, second);
-}
-
-function setUpOperationButtons() {
-  for (let [opCode, button] of Object.entries(elements.operationButtons))
-    button.addEventListener("click", function () {
-      stored = {
-        text: stored ? calculate() : elements.display.textContent,
-        opCode,
-      };
-      console.log(stored);
-      elements.display.textContent = "";
-    });
-}
-
-function setUpCalculateButton() {
-  elements.calculateButton.addEventListener("click", handleCalculate);
 }
 
 (() => {
