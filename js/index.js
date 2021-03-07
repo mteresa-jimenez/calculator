@@ -53,11 +53,11 @@ const elements = {
 };
 
 // Handle events
-function handleDigit() {
-  for (let digit of Object.entries(elements.digitButtons)) {
-    elements.display.textContent += digit;
-  }
-}
+// function handleDigit() {
+//   for (let digit of Object.entries(elements.digitButtons)) {
+//     elements.display.textContent += digit;
+//   }
+// }
 
 function handleSeparator() {
   const text = elements.display.textContent;
@@ -83,37 +83,15 @@ function handleKeysDown(ev) {
   const multiply = "*";
   const divide = "/";
 
-  if (ev.key === "1") {
-    elements.display.textContent += "1";
-    elements.digitButtons[1].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "2") {
-    elements.display.textContent += "2";
-    elements.digitButtons[2].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "3") {
-    elements.display.textContent += "3";
-    elements.digitButtons[3].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "4") {
-    elements.display.textContent += "4";
-    elements.digitButtons[4].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "5") {
-    elements.display.textContent += "5";
-    elements.digitButtons[5].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "6") {
-    elements.display.textContent += "6";
-    elements.digitButtons[6].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "7") {
-    elements.display.textContent += "7";
-    elements.digitButtons[7].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "8") {
-    elements.display.textContent += "8";
-    elements.digitButtons[8].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "9") {
-    elements.display.textContent += "9";
-    elements.digitButtons[9].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "0") {
-    elements.display.textContent += "0";
-    elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
-  } else if (ev.key === "Backspace") {
+  for (let [digit] of Object.entries(elements.digitButtons)) {
+    if (ev.key === digit) {
+      elements.display.textContent += digit;
+      elements.digitButtons[digit].style.backgroundColor =
+        "rgba(201, 196, 196, 0.8)";
+    }
+  }
+
+  if (ev.key === "Backspace") {
     handleClear();
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === ".") {
@@ -162,27 +140,15 @@ function handleKeysUp(ev) {
   const subtract = "-";
   const multiply = "*";
   const divide = "/";
-  if (ev.key === "1") {
-    elements.digitButtons[1].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "2") {
-    elements.digitButtons[2].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "3") {
-    elements.digitButtons[3].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "4") {
-    elements.digitButtons[4].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "5") {
-    elements.digitButtons[5].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "6") {
-    elements.digitButtons[6].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "7") {
-    elements.digitButtons[7].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "8") {
-    elements.digitButtons[8].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "9") {
-    elements.digitButtons[9].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "0") {
-    elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.1)";
-  } else if (ev.key === "Backspace") {
+
+  for (let [digit] of Object.entries(elements.digitButtons)) {
+    if (ev.key === digit) {
+      elements.digitButtons[digit].style.backgroundColor =
+        "rgba(201, 196, 196, 0.1)";
+    }
+  }
+
+  if (ev.key === "Backspace") {
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
   } else if (ev.key === ".") {
     elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.1)";
