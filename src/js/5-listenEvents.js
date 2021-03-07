@@ -12,7 +12,6 @@ function setUpEntryButtons() {
 }
 
 function setUpOperationButtons() {
-  console.log(elements.operationButtons);
   for (let [opCode, button] of Object.entries(elements.operationButtons))
     button.addEventListener("click", () => {
       handleOperations(opCode);
