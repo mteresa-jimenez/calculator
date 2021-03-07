@@ -53,25 +53,25 @@ const elements = {
 };
 
 // Handle events
-function handleDigitButtons() {
+function handleDigit() {
   for (let digit of Object.entries(elements.digitButtons)) {
     elements.display.textContent += digit;
   }
 }
 
-function handleSeparatorButton() {
+function handleSeparator() {
   const text = elements.display.textContent;
   if (text.length && text.indexOf(".") === -1)
     elements.display.textContent += ".";
 }
 
-function handleClearButton() {
+function handleClear() {
   elements.display.textContent = "";
   elements.display.textContent = "";
   stored = null;
 }
 
-function handleCalculateButton() {
+function handleCalculate() {
   if (!stored) return;
   elements.display.textContent = calculate();
   stored = null;
@@ -114,13 +114,13 @@ function handleKeysDown(ev) {
     elements.display.textContent += "0";
     elements.digitButtons[0].style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "Backspace") {
-    handleClearButton();
+    handleClear();
     elements.clearButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === ".") {
-    handleSeparatorButton();
+    handleSeparator();
     elements.separatorButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "=") {
-    handleCalculateButton();
+    handleCalculate();
     elements.calculateButton.style.backgroundColor = "rgba(201, 196, 196, 0.8)";
   } else if (ev.key === "+") {
     stored = {
@@ -208,7 +208,7 @@ let touchendX = 0;
 
 function handleSetUpClearTouch() {
   if (touchendX < touchstartX) {
-    handleClearButton();
+    handleClear();
   }
 }
 
@@ -224,8 +224,8 @@ function setUpEntryButtons() {
       elements.display.textContent += digit;
     });
 
-  elements.separatorButton.addEventListener("click", handleSeparatorButton);
-  elements.clearButton.addEventListener("click", handleClearButton);
+  elements.separatorButton.addEventListener("click", handleSeparator);
+  elements.clearButton.addEventListener("click", handleClear);
 }
 
 function setUpClearTouch() {
@@ -267,7 +267,7 @@ function setUpOperationButtons() {
 }
 
 function setUpCalculateButton() {
-  elements.calculateButton.addEventListener("click", handleCalculateButton);
+  elements.calculateButton.addEventListener("click", handleCalculate);
 }
 
 (() => {
