@@ -1,118 +1,124 @@
-# polypoly JavaScript case study
+![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
 
-Hi!
+# Adalab web starter kit
 
-If you read this you are probably in talks with us to work with polypoly. To
-figure out whether we would be happy working together, we created this case
-study, which will give us some insights into how you work. At the time you read
-this, we may not have published [our
-repositories](https://github.com/polypoly-eu) as open source yet, so we will
-make sure to provide you with insights into how we work as soon as we meet to
-discuss your code.
+Ahoy! Este es nuestro Starter Kit creado en **node y gulp**. ¿Y qué es un Starter kit? Pues es una **plantilla de proyecto con funcionalidades preinstaladas y preconfiguradas**.
 
-You can finish the case study on your own time, and send us the results when
-you're done. We are asking you to invest around two hours of your spare time
-into this. We realise you are taking the risk of wasting your time here. A lot
-of candidates have meaningful open source work we could look into instead, but
-by far not everyone does, and we want to make a fair assessment - this is the
-most time efficient way we could think of. We tried to design the problems so
-that it shouldn't take you more than two hours of work in total.
+Este Kit incluye un motor de plantillas HTML, el preprocesador SASS y un servidor local y muchas cosas más. El Kit nos ayuda a trabajar más cómodamente, nos automatiza tareas.
 
-## How it works
+En el Kit hay 3 tipos de ficheros y carpetas:
 
-This repository contains an existing code base for a calculator web app. Below
-you will find several problems to solve, which all ask you to make changes to
-the existing code base.
+- Los ficheros que están sueltos en la raíz del repositorio, como gulpfile.js, package.json... Son la configuración del proyecto y no necesitamos modificarlos.
+- La carpeta `src/`: son los ficheros de nuestra página web, como HTML, CSS, JS...
+- Las carpetas `public/` y `docs/`, que son generadas automáticamente cuando arrancamos el proyecto. El Kit lee los ficheros que hay dentro de `src/`, los procesa y los genera dentro de `public/` y `docs/`.
 
-In addition to making the changes for solving your chosen problems, **please
-include a written explanation** of how you approached the problem, and why you
-did it that way. Anything from additional text files to commit messages works,
-as long as it's in the repository we will find it :)
+## Guía de inicio rápido
 
-## The problems
+> **NOTA:** Necesitas tener instalado [Node JS](https://nodejs.org/) para trabajar con este Starter Kit:
 
-There are five problems, of which we will ask you to tackle three. To respect
-your time and see what you focus on, we would ask you to finish each problem in
-about _40_ minutes, which means it should take you no more than _two hours_ in
-total.
+### Pasos a seguir cada vez que queremos arrancar un proyecto desde cero:
 
-Test your work in the current stable version of
-[Firefox](https://www.mozilla.org/firefox) - version 85 as of
-2020-02-15. Whether it works in other browsers does not matter.
+1. **Crea tu propio repositorio.**
+1. Descarga este **Starter kit desde GitHub**.
+   - No recomendamos que clones este repo ya que no podrás añadir commits.
+1. **Copia todos los ficheros** de este Starter kit en la carpeta raíz de tu repositorio.
+   - Recuerda que debes copiar **también los ficheros ocultos**.
+   - Si has decidido clonar este repo, no debes copiar la carpeta `.git`. Si lo haces estarás machacando tu propio repositorio.
+1. **Abre una terminal** en la carpeta raíz de tu repositorio.
+1. **Instala las dependencias** locales ejecutando en la terminal el comando:
 
-### Part 1 - Improve the product
+```bash
+npm install
+```
 
-Please pick any **two** of these problems and solve them. It does not matter which
-problems you pick, when in doubt go for those that you feel confident you can
-finish in _40 minutes_ (per problem).
+### Pasos para arrancar el proyecto:
 
-Feel free to refactor the existing code within the timebox of your problem, but
-_please do not introduce any third party tools or libraries_ at this point.
+Una vez hemos instalado las dependencias, vamos a arrancar el proyecto. **El proyecto hay que arrancarlo cada vez que te pongas a programar.** Para ello ejecuta el comando:
 
-#### 1. Make it more useable on desktop
+```bash
+npm start
+```
 
-1. Make it look like in the [desktop mockup](mockups/desktop.png).
-2. Allow using the keyboard buttons `0`-`9`, `+`, `-`, `*`, `/`, `=` and
-   _backspace_ (`C`) for the respective buttons on the calculator. Pressing one
-   of those keys on the keyboard should show the buttons of the calculator as
-   being pressed.
+Este comando:
 
-Test your work in a window size of 1024x768.
+- **Abre una ventana de Chrome y muestra tu página web**, al igual que hace el plugin de VS Code Live Server (Go live).
+- También **observa** todos los ficheros que hay dentro de la carpeta `src/`, para que cada vez que modifiques un fichero **refresca tu página en Chrome**.
+- También **procesa los ficheros** HTML, SASS / CSS y JS y los **genera y guarda en la carpeta `public/`**. Por ejemplo:
+   - Convierte los ficheros SASS en CSS.
+   - Combina los diferentes ficheros de HTML y los agrupa en uno o varios ficheros HTML.
 
-#### 2. Make it more useable on mobile
+Después de ejecutar `npm start` ya puedes empezar a editar todos los ficheros que están dentro de la carpeta `src/` y programar cómodamente.
 
-1. Make it look like in the [mobile mockup](mockups/mobile.png).
-2. If you also tackled the first problem, make sure it still looks and works as
-   intended on desktop. If not, you may ignore what it looks like on desktop.
-3. When the user swipes the display field from right to left, it should trigger
-   the behaviour of the `C` button.
+### Pasos para publicar el proyecto en GitHub Pages:
 
-Test your work in Firefox' _Responsive Design Mode_, chosing _iPhone X/XS_.
+Para generar tu página para producción ejecuta el comando:
 
-#### 3. Make it more powerful
+```bash
+npm run docs
+```
 
-1. Change the behaviour triggered by the `=` button: Instead of applying the
-   current operation only once, pressing it again should apply the same
-   operation again. Example: Press `2`, `0`, `/`, `2`, and `=`. The display should
-   show `10`. Press `=` again, and it should show `5`.
-2. Make it possible to enter a negative value, by pressing `-` before a
-   digit. Example: Press `2`, `-`, `-`, `2` and `=`. The display should show
-   `4`.
+Y a continuación:
 
-#### 4. Show the formula in the display
+1. Sube a tu repo la carpeta `docs/` que se te acaba de generar.
+1. Entra en la pestaña `settings` de tu repo.
+1. Y en el apartado de GitHub Pages activa la opción **master branch /docs folder**.
+1. Y ya estaría!!!
 
-1. The display should not show the current value, but the entire formula
-   currently being typed, until the user presses `=`.
-2. The current result of what is being typed should be shown as a preview, as in
-   the [mockup](mockups/formula.png).
-3. If the user presses `=`, the preview should disappear and only the result of
-   the calculation should be shown in the display.
-4. The overall behaviour of the calculator should stay the same, i.e. pressing
-   the same keys in the same order with or without this change should lead to
-   the same result after hitting `=`. Example: Operations should be applied from
-   left to right, the formula `2 + 10 / 2` should evalute to `6`, not `7`.
+Además, los comandos:
 
-### Part 2 - Improve the code
+```bash
+npm run push-docs
+```
+o
 
-_After_ you finish the first part, please invest _at most 40 minutes_ into
-improving the quality of the code base, whatever that means to you. Do not
-change how the calculator looks or reacts to user input.
+```bash
+npm run deploy
+```
 
-You may introduce third party tools and libraries at this point - whether you do
-that and how you do that is entirely up to your judgement.
+son un atajo que nos genera la versión de producción y hace push de la carpeta `docs/` del tirón. Te recomendamos ver el fichero `package.json` para aprender cómo funciona.
 
-## Sending us your work
+## Flujo de archivos con Gulp
 
-We would like to inspect not just the code you've written, but also how you
-worked with version control, to get a more full picture. To this end, once
-you're done, please do one of the following things:
+Estas tareas de Gulp producen el siguiente flujo de archivos:
 
-**Option 1:** Share your repository with us on any valid Git HTTP(S) URL.
-Ideally without authentication, but if you want to share a private repository on
-GitHub, GitLab or some other platform with us, you can still do so: Just send an
-invite.
+![Gulp flow](./gulp-flow.png)
 
-**Option 2:** Send us the repository as a `.zip`, `.tar.gz` or `.tar.bz2`
-archive - either via Email or as a download link.
+## `gulpfile.js` y `config.json`
 
-Thank you very much for taking the time!
+Nuestro **gulpfile.js** usa el fichero `config.json` de configuración con las rutas de los archivos a generar / observar.
+
+De esta manera separarmos las acciones que están en `gulpfile.js` de la configuración de las acciones que están en `config.json`.
+
+## Estructura de carpetas
+
+La estructura de carpetas tiene esta pinta:
+
+```
+src
+ ├─ api // los ficheros de esta carpeta se copian en public/api/
+ |  └─ data.json
+ ├─ images
+ |  └─ logo.jpg
+ ├─ js // los ficheros de esta carpeta se concatenan en el fichero main.js y este se guarda en public/main.js
+ |  ├─ main.js
+ |  └─ events.js
+ ├─ scss
+ |  ├─ components
+ |  ├─ core
+ |  ├─ layout
+ |  └─ pages
+ └─ html
+    └─ partials
+```
+
+> **NOTA:** Los partials de HTML y SASS del proyecto son orientativos. Te recomendamos usar los que quieras, y borrar los que no uses.
+
+## Vídeotutoriales del Starter kit
+
+- [Qué es, trabajar con la versión de desarrollo y rutas relativas](https://www.youtube.com/watch?v=XwvhXvBijos)
+- [Migración de un proyecto, trabajar con la versión de producción y GitHub Pages](https://www.youtube.com/watch?v=qqGClcgt9Uc)
+- [Motor de plantillas](https://www.youtube.com/watch?v=4GwXOJ045Zg)
+
+## Falta algo?
+
+Echas de menos que el kit haga algo en concreto? Pidelo sin problema a través de las issues o si te animas a mejorarlo mándanos un PR :)
