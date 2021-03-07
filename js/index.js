@@ -54,6 +54,10 @@ const elements = {
 
 // HANDLE EVENTS
 
+function handleDigits(digit) {
+  elements.display.textContent += digit;
+}
+
 function handleSeparator() {
   const text = elements.display.textContent;
   if (text.length && text.indexOf(".") === -1)
@@ -64,6 +68,14 @@ function handleClear() {
   elements.display.textContent = "";
   elements.display.textContent = "";
   stored = null;
+}
+
+function handleOperations(opCode) {
+  stored = {
+    text: stored ? calculate() : elements.display.textContent,
+    opCode,
+  };
+  elements.display.textContent = "";
 }
 
 function handleCalculate() {
@@ -78,7 +90,7 @@ function handleKeysDown(ev) {
   // digits keys
   for (let [digit] of Object.entries(elements.digitButtons)) {
     if (ev.key === digit) {
-      elements.display.textContent += digit;
+      handleDigits(digit);
       elements.digitButtons[digit].style.backgroundColor =
         "rgba(201, 196, 196, 0.8)";
     }
@@ -99,11 +111,7 @@ function handleKeysDown(ev) {
   //operation keys
   for (let [opCode] of Object.entries(elements.operationButtons)) {
     if (ev.key === opCode) {
-      stored = {
-        text: stored ? calculate() : elements.display.textContent,
-        opCode,
-      };
-      elements.display.textContent = "";
+      handleOperations(opCode);
       elements.operationButtons[opCode].style.backgroundColor =
         "rgba(201, 196, 196, 0.8)";
     }
@@ -153,8 +161,8 @@ function handleSetUpClearTouch() {
 // Listen Buttons
 function setUpEntryButtons() {
   for (let [digit, button] of Object.entries(elements.digitButtons))
-    button.addEventListener("click", function () {
-      elements.display.textContent += digit;
+    button.addEventListener("click", () => {
+      handleDigits(digit);
     });
 
   elements.separatorButton.addEventListener("click", handleSeparator);
@@ -172,12 +180,8 @@ function calculate() {
 function setUpOperationButtons() {
   console.log(elements.operationButtons);
   for (let [opCode, button] of Object.entries(elements.operationButtons))
-    button.addEventListener("click", function () {
-      stored = {
-        text: stored ? calculate() : elements.display.textContent,
-        opCode,
-      };
-      elements.display.textContent = "";
+    button.addEventListener("click", () => {
+      handleOperations(opCode);
     });
 }
 
