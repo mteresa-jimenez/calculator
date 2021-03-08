@@ -35,13 +35,39 @@ When the keydown event is finished, the button must recover its original color. 
 In the original code base, each "click" event had an anonymous function inside each ``addEventListenet``. In order to reuse these functions in the different events, I divided each one in separated handle functions and named them.
 
 - **Reduce duplicated code**
+
 In both handle key functions, the same ``ev.key`` line of code was repeted for each button. To avoid innecesary repeated code, I used different loops to go through ``elements.digitButtons`` and ``elements.operationButtons``.
 
 - **Rename and reorder functions**
 
 - **Divide the code in different JS files**
+
 For a clearer understanding of the code, I divided the code in fractions in different ".js" files.
 
+
+## FOLDER STRUCTURE
+
+
+```
+src
+ ├─ html
+ |  └─ index.html
+ ├─ images
+ |  └─ favicon.png
+ ├─ js 
+ |  ├─ 1-main.js
+ |  ├─ 2-calculate.js
+ |  ├─ 1-main.js
+ |  ├─ 1-main.js
+ |  └─ events.js
+ ├─ scss
+ |  ├─ components
+ |  ├─ core
+ |  ├─ layout
+ |  └─ pages
+ └─ html
+    └─ partials
+```
 
 
 
