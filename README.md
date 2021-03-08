@@ -77,18 +77,18 @@ src
 
 In the project directory, you can run:
 
-# `npm install`
+ ``npm install``
 
 If it is the first time in this repository, you should install all the dependencies.
 
 
-# `npm start`
+``npm start``
 
 Runs the app in the development mode.
 The page will reload if you make edits.
 
 
-# `npm run docs`
+ ``npm run docs``
 
 This command makes the website available for production and public in GitHub pages.
 
