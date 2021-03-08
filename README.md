@@ -7,9 +7,9 @@ For this exercise, I have been given an existing code base for a calculator web 
 1. Improve the product:
 
 - Responsive design - mobile first
-In order to improve the design and make the calculator look like the ![mobile mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/mobile.png), I changed the appearance using CSS styles, specifically "CSS grid" to rearrange the order of the buttons.
+In order to improve the design and make the calculator look like the [mobile mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/mobile.png), I changed the appearance using CSS styles, specifically "CSS grid" to rearrange the order of the buttons.
 
-Then, using mediaqueries to adapt the design to desktop screens and make the calculator look like the ![desktop mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/desktop.png).
+Then, using mediaqueries to adapt the design to desktop screens and make the calculator look like the [desktop mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/desktop.png).
 
 - Introduction of touch event for mobile version
 To trigger the behaviour of the C button when user swipes the display field from right to left, I introduced a "touchstart" and "touchend" event. When the end point represents a smaller number in the X axis, the event calls the function that clears the display.
