@@ -1,8 +1,76 @@
-![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
+# Calculator
 
-# Adalab web starter kit
+This is a case study for the selection process for **PolyPoly**. This project has been developed with **vanilla JavaScript, HTML5, CSS/SASS**.
 
-Ahoy! Este es nuestro Starter Kit creado en **node y gulp**. ¿Y qué es un Starter kit? Pues es una **plantilla de proyecto con funcionalidades preinstaladas y preconfiguradas**.
+## DEVELOPMENT
+
+For this exercise, I have been given an existing code base for a calculator web app to which I had to make several changes to solve several problems.
+
+> **1. Improve the product:**
+
+- **Responsive design - mobile first**
+
+In order to improve the design and make the calculator look like the [mobile mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/mobile.png), I changed the appearance using CSS styles, specifically "CSS grid" to rearrange the order of the buttons.
+
+Then, using mediaqueries to adapt the design to desktop screens and make the calculator look like the [desktop mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/desktop.png).
+
+- **Introduction of touch event for mobile version**
+
+To trigger the behaviour of the C button when user swipes the display field from right to left, I introduced a "touchstart" and "touchend" event. When the end point represents a smaller number in the X axis, the event calls the function that clears the display.
+
+- **Allow keyboard for desktop version**
+
+I created two functions: one to handle the keydown event and another one to listen it. In the first one, there are several ``ev.key``, one for each button in the calculator.
+
+- **Simulation of buttons being pressed**
+
+First, the buttons color had to change to simulate being pressed. To the previous keydown funtion, I added a ``style.backgroundColor`` to each ``ev.key``. 
+When the keydown event is finished, the button must recover its original color. I created a second handle function for a keyup event, setting the background color of each button to the oringinal using again an ``ev.key`` for each button.
+
+
+> **2. Improve the code:**
+
+- **Abstract handle functions**
+
+In the original code base, each "click" event had an anonymous function inside each ``addEventListenet``. In order to reuse these functions in the different events, I divided each one in separated handle functions and named them.
+
+- **Reduce duplicated code**
+
+In both handle key functions, the same ``ev.key`` line of code was repeted for each button. To avoid innecesary repeated code, I used different loops to go through ``elements.digitButtons`` and ``elements.operationButtons``.
+
+- **Rename and reorder functions**
+
+- **Divide the code in different JS files**
+
+For a clearer understanding of the code, I divided the code in fractions in different ".js" files.
+
+
+## FOLDER STRUCTURE
+
+
+```
+src
+ ├─ html
+ |  └─ index.html
+ ├─ images
+ |  └─ favicon.png
+ ├─ js 
+ |  ├─ 1-main.js
+ |  ├─ 2-calculate.js
+ |  ├─ 1-main.js
+ |  ├─ 1-main.js
+ |  └─ events.js
+ ├─ scss
+ |  ├─ components
+ |  ├─ core
+ |  ├─ layout
+ |  └─ pages
+ └─ html
+    └─ partials
+```
+
+
+
 
 Este Kit incluye un motor de plantillas HTML, el preprocesador SASS y un servidor local y muchas cosas más. El Kit nos ayuda a trabajar más cómodamente, nos automatiza tareas.
 
