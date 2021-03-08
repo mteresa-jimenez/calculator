@@ -1,8 +1,29 @@
-![Adalab](https://beta.adalab.es/resources/images/adalab-logo-155x61-bg-white.png)
+# Calculator
 
-# Adalab web starter kit
+This is a case study for the selection process for **PolyPoly**. This project has been developed with **vanilla JavaScript, HTML5, CSS/SASS**.
 
-Ahoy! Este es nuestro Starter Kit creado en **node y gulp**. ¿Y qué es un Starter kit? Pues es una **plantilla de proyecto con funcionalidades preinstaladas y preconfiguradas**.
+For this exercise, I have been given an existing code base for a calculator web app to which I had to make several changes to solve several problems.
+
+1. Improve the product:
+
+- Responsive design - mobile first
+In order to improve the design and make the calculator look like the ![mobile mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/mobile.png), I changed the appearance using CSS styles, specifically "CSS grid" to rearrange the order of the buttons.
+
+Then, using mediaqueries to adapt the design to desktop screens and make the calculator look like the ![desktop mokup](https://github.com/mteresa-jimenez/calculator/blob/code-improvement/mockups/desktop.png).
+
+- Introduction of touch event for mobile version
+To trigger the behaviour of the C button when user swipes the display field from right to left, I introduced a "touchstart" and "touchend" event. When the end point represents a smaller number in the X axis, the event calls the function that clears the display.
+
+- Allow keyboard for desktop version
+In order to do this, I created two functions: one to handle the keydown event and another one to listen it. In the first one, 
+
+- Simulation of buttons being pressed
+
+
+
+2. Improve the code:
+
+
 
 Este Kit incluye un motor de plantillas HTML, el preprocesador SASS y un servidor local y muchas cosas más. El Kit nos ayuda a trabajar más cómodamente, nos automatiza tareas.
 
